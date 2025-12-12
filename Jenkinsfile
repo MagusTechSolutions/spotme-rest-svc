@@ -10,11 +10,7 @@ s_branch = s_branch.replaceAll("/","_")
 pipeline{
     agent any
     stages{
-        stage("Clean Up"){
-            steps{
-                deleteDir()
-            }
-        }
+
         stage("Clone repo"){
             steps{
                 checkout scm
@@ -97,10 +93,5 @@ pipeline{
                archiveArtifacts artifacts: 'pipeline.properties', followSymlinks: false
             }
         }
-    }
-    post {
-           always{
-                cleanWs()
-           }
     }
 }
